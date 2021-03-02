@@ -14,20 +14,36 @@ public class App {
 		Session mySession = myFactory.getCurrentSession();
 		try {
 			mySession.beginTransaction();
-			//select * from city where TUR
-			//from City c where c.countryCode='TUR' OR c.countryCode='USA'
-			//from City c where c.name LIKE '%kar'
-			List<City> cities = mySession.createQuery("from City c ORDER BY c.name DESC").getResultList();
-			for (City city : cities) {
-				System.out.println(city.getName());
-			}
-			System.out.println(cities.size());
+			// select * from city where TUR
+			// from City c where c.countryCode='TUR' OR c.countryCode='USA'
+			// from City c where c.name LIKE '%kar'
+			/*
+			 * List<City> cities =
+			 * mySession.createQuery("from City c ORDER BY c.name DESC").getResultList();
+			 * for (City city : cities) { System.out.println(city.getName()); }
+			 * System.out.println(cities.size());
+			 */
+			//
+//			City myCity = new City();
+//			myCity.setName("Aydin");
+//			myCity.setCountryCode("TUR");
+//			myCity.setDistrict("Ege");
+//			myCity.setPopulation(1000000);
+
+			// mySession.save(myCity);
+			/*
+			 * City myCity =mySession.get(City.class, 4084); myCity.setPopulation(100);
+			 * mySession.save(myCity); System.out.println(myCity.getName());
+			 */
+			City myCity =mySession.get(City.class, 4084);
+			mySession.delete(myCity);
 
 			mySession.getTransaction().commit();
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
-			mySession.close();
+
 			myFactory.close();
 		}
 	}
